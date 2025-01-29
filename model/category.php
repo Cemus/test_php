@@ -1,6 +1,6 @@
 <?php
 
-function addCategory($bdd, $name):void{
+function addCategory(PDO $bdd,string $name):void{
     $requete = "INSERT INTO category(`name`) VALUE(?)";
     try {
         $req = $bdd->prepare($requete);
@@ -11,7 +11,7 @@ function addCategory($bdd, $name):void{
     }
 }
 
-function updateCategory($bdd, $name,$id):void{
+function updateCategory(PDO $bdd,string $name,int$id):void{
     $requete = "UPDATE category SET `name`=? WHERE id_category=?";
     try {
         $req = $bdd->prepare($requete);
@@ -23,7 +23,7 @@ function updateCategory($bdd, $name,$id):void{
     }
 }
 
-function deleteCategory($bdd, $id):void{
+function deleteCategory(PDO $bdd,int $id):void{
     $requete = "DELETE FROM category WHERE id_category =?";
     try {
         $req = $bdd->prepare($requete);
@@ -34,7 +34,7 @@ function deleteCategory($bdd, $id):void{
     }
 }
 
-function getCategoryByName($bdd, $name){
+function getCategoryByName(PDO $bdd,string $name){
     $requete = "SELECT id_category,`name` FROM category WHERE `name`=?";
     try {
         $req = $bdd->prepare($requete);
@@ -48,7 +48,7 @@ function getCategoryByName($bdd, $name){
 }
 
 
-function getAllCategory($bdd):void{
+function getAllCategory(PDO $bdd):void{
     $requete = "SELECT id_category, `name` FROM category";
     try {
         $req = $bdd->prepare($requete);

@@ -1,6 +1,6 @@
 <?php
 
-function addTask($bdd, $title, $content, $createdAt, $authorId):void{
+function addTask(PDO $bdd, string $title,string $content,string $createdAt,int $authorId):void{
     $requete = "INSERT INTO task(title, content, create_at, id_account,`status`) VALUE(?,?,?,?,0)";
     try {
         $req = $bdd->prepare($requete);
@@ -14,7 +14,7 @@ function addTask($bdd, $title, $content, $createdAt, $authorId):void{
     }
 }
 
-function updateStatus($bdd, $status, $idTask):void{
+function updateStatus(PDO $bdd,string $status,int $idTask):void{
     $requete = "UPDATE task SET `status` = ? WHERE id_task = ?";
     try {
         $req = $bdd->prepare($requete);
@@ -26,7 +26,7 @@ function updateStatus($bdd, $status, $idTask):void{
     }
 }
 
-function updateContent($bdd, $content, $idTask):void{
+function updateContent(PDO $bdd,string $content,int  $idTask):void{
     $requete = "UPDATE task SET content = ? WHERE id_task = ?";
     try {
         $req = $bdd->prepare($requete);
@@ -38,7 +38,7 @@ function updateContent($bdd, $content, $idTask):void{
     }
 }
 
-function updateTitle($bdd, $title, $idTask):void{
+function updateTitle(PDO $bdd,string $title,int  $idTask):void{
     $requete = "UPDATE task SET title = ? WHERE id_task = ?";
     try {
         $req = $bdd->prepare($requete);
@@ -50,7 +50,7 @@ function updateTitle($bdd, $title, $idTask):void{
     }
 }
 
-function deleteTask($bdd, $id):void{
+function deleteTask(PDO $bdd,int  $id):void{
     $requete = "DELETE FROM task WHERE id_task = ?";
     try {
         $req = $bdd->prepare($requete);
@@ -61,7 +61,7 @@ function deleteTask($bdd, $id):void{
     }
 }
 
-function getTaskByAuthor($bdd, $authorId):void{
+function getTaskByAuthor(PDO $bdd,int  $authorId):void{
     $requete = "SELECT `title`,content, created_at, `status` FROM task WHERE id_account = ?";
     try {
         $req = $bdd->prepare($requete);
@@ -75,7 +75,7 @@ function getTaskByAuthor($bdd, $authorId):void{
 }
 
 
-function getAllTask($bdd):void{
+function getAllTask(PDO $bdd):void{
     $requete = "SELECT `title`,content, created_at, `status` FROM task ";
     try {
         $req = $bdd->prepare($requete);

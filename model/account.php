@@ -1,6 +1,6 @@
 <?php
 
-function addAccount($bdd, $firstname, $lastname, $email, $password):void{
+function addAccount(PDO $bdd,string $firstname,string $lastname,string $email,string $password):void{
     $requete = "INSERT INTO account(firstname, lastname,email,password) VALUE(?,?,?,?)";
     try {
         $req = $bdd->prepare($requete);
@@ -14,7 +14,7 @@ function addAccount($bdd, $firstname, $lastname, $email, $password):void{
     }
 }
 
-function updateAccount($bdd, $id, $informations):void{
+function updateAccount(PDO $bdd,int $id,array $informations):void{
     $keys = array_keys($informations);
     foreach ($keys as $key){
         try {
@@ -30,7 +30,7 @@ function updateAccount($bdd, $id, $informations):void{
     }
 }
 
-function deleteAccount($bdd, $id):void{
+function deleteAccount(PDO $bdd,int $id):void{
     $requete = "DELETE FROM account WHERE id_account =?";
     try {
         $req = $bdd->prepare($requete);
@@ -41,7 +41,7 @@ function deleteAccount($bdd, $id):void{
     }
 }
 
-function getAccountById($bdd, $id):void{
+function getAccountById(PDO $bdd,int $id):void{
     $requete = "SELECT id_account, firstname, lastname, email FROM account WHERE id_account=?";
     try {
         $req = $bdd->prepare($requete);
@@ -55,7 +55,7 @@ function getAccountById($bdd, $id):void{
 }
 
 
-function getAccountByFirstname($bdd, $firstname):void{
+function getAccountByFirstname(PDO $bdd,string $firstname):void{
     $requete = "SELECT id_account, firstname, lastname, email FROM account WHERE firstname   =?";
     try {
         $req = $bdd->prepare($requete);
@@ -68,7 +68,7 @@ function getAccountByFirstname($bdd, $firstname):void{
     }
 }
 
-function getAccountByLastname($bdd, $lastname):void{
+function getAccountByLastname(PDO $bdd,string $lastname):void{
     $requete = "SELECT id_account, firstname, lastname, email FROM account WHERE lastname=?";
     try {
         $req = $bdd->prepare($requete);
@@ -82,7 +82,7 @@ function getAccountByLastname($bdd, $lastname):void{
 }
 
 
-function getAllAccount($bdd):void{
+function getAllAccount(PDO $bdd):void{
     $requete = "SELECT id_account, firstname, lastname, email FROM account";
     try {
         $req = $bdd->prepare($requete);

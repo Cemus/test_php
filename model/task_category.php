@@ -1,6 +1,6 @@
 <?php
 
-function getTaskByCategory($bdd, $category):void{
+function getTaskByCategory(PDO $bdd,string $category):void{
     $requete = "SELECT tc.id_category, tc.id_task, t.title, t.content, t.status, t.id_account, t.created_at
                 FROM task_category as tc
                 JOIN task as t
@@ -18,7 +18,7 @@ function getTaskByCategory($bdd, $category):void{
     }
 }
 
-function getTaskById($bdd, $id):void{
+function getTaskById(PDO $bdd,int  $id):void{
     $requete = "SELECT tc.id_category, tc.id_task, t.title, t.content, t.status, t.id_account, t.created_at
                 FROM task_category as tc
                 JOIN task as t
@@ -36,7 +36,7 @@ function getTaskById($bdd, $id):void{
     }
 }
 
-function addCategoryToTask($bdd, $category, $idTask):void{
+function addCategoryToTask(PDO $bdd,string $category,int  $idTask):void{
     $requete = "UPDATE task_category SET id_task=? WHERE id_category=?";
     try {
         $req = $bdd->prepare($requete);
