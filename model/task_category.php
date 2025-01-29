@@ -9,7 +9,7 @@ function getTaskByCategory($bdd, $category):void{
                 ORDER BY t.created_at DESC";
     try {
         $req = $bdd->prepare($requete);
-        $req -> bind_param(1, $category,PDO::PARAM_INT);
+        $req -> bindParam(1, $category,PDO::PARAM_INT);
         $req -> execute();
         $data = $req->fetch(PDO::FETCH_ASSOC);
         return $data;
@@ -27,7 +27,7 @@ function getTaskById($bdd, $id):void{
                 ORDER BY t.created_at DESC";
     try {
         $req = $bdd->prepare($requete);
-        $req -> bind_param(1, $id,PDO::PARAM_INT);
+        $req -> bindParam(1, $id,PDO::PARAM_INT);
         $req -> execute();
         $data = $req->fetch(PDO::FETCH_ASSOC);
         return $data;
@@ -40,8 +40,8 @@ function addCategoryToTask($bdd, $category, $idTask):void{
     $requete = "UPDATE task_category SET id_task=? WHERE id_category=?";
     try {
         $req = $bdd->prepare($requete);
-        $req -> bind_param(1, $idTask,PDO::PARAM_INT);
-        $req -> bind_param(2, $category,PDO::PARAM_INT);
+        $req -> bindParam(1, $idTask,PDO::PARAM_INT);
+        $req -> bindParam(2, $category,PDO::PARAM_INT);
         $req -> execute();
         $data = $req->fetch(PDO::FETCH_ASSOC);
         return $data;
