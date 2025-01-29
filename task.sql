@@ -16,7 +16,8 @@ id_task INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 title VARCHAR(50) NOT NULL,
 content VARCHAR(250) NOT NULL,
 `status` TINYINT(1) DEFAULT 0,
-id_account INT NOT NULL
+id_account INT NOT NULL,
+created_at DATETIME NOT NULL
 )ENGINE=InnoDB;
 
 CREATE TABLE task_category(
