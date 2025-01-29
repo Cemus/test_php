@@ -1,5 +1,5 @@
 <?php
-function connexion () {
+function connexion ():array {
     try {
         $bdd = new PDO("mysql:host=".URL_BDD.";
         dbname=".NAME_BDD.";
@@ -7,10 +7,10 @@ function connexion () {
          LOGIN_BDD,
          PASSWORD_BDD);
         $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo "Connecté sur la BDD";
-        return $bdd;
+        
+        return ["bdd"=>$bdd, "msg"=>"Connexion réussie !"];
       } catch(PDOException $e) {
-        echo "Connexion échouée : " . $e->getMessage();
+        return ["msg"=>$e->getMessage()];
       }
 }
 ?>

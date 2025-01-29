@@ -10,7 +10,13 @@
     <?php
     require  "./util/connexion.php";
     require "./env.php";
-    $bdd = connexion();
+    $connexion = connexion();
+    if (empty($connexion["bdd"])) {
+        echo $connexion["msg"];
+        return;
+    }
+    $bdd = $connexion["bdd"];
+    echo $connexion["msg"];
     ?>
 </body>
 </html>
